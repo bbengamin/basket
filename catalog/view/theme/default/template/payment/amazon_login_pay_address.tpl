@@ -1,7 +1,7 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
 <div class="container"><?php echo $content_top; ?>
 	<div style="text-align:center;">
-		<h3><?php echo $heading_address; ?></h3>
+		<h3 class='title-h3'><?php echo $heading_address; ?></h3>
 		<?php if(isset($amazon_login_pay_test)){ ?>
 		<label>Debug Error Code     :</label>
 		<div id="errorCode"></div>

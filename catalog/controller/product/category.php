@@ -18,13 +18,13 @@ class ControllerProductCategory extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'p.sort_order';
+			$sort = 'rating';
 		}
 
 		if (isset($this->request->get['order'])) {
 			$order = $this->request->get['order'];
 		} else {
-			$order = 'ASC';
+			$order = 'DESC';
 		}
 
 		if (isset($this->request->get['page'])) {
@@ -90,11 +90,81 @@ class ControllerProductCategory extends Controller {
 		$category_info = $this->model_catalog_category->getCategory($category_id);
 
 		if ($category_info) {
-			$this->document->setTitle($category_info['meta_title']);
-			$this->document->setDescription($category_info['meta_description']);
-			$this->document->setKeywords($category_info['meta_keyword']);
+			
+			$url = '';
 
-			$data['heading_title'] = $category_info['name'];
+			if (isset($this->request->get['filter'])) {
+				$url .= '&filter=' . $this->request->get['filter'];
+			}
+
+			if (isset($this->request->get['limit'])) {
+				$url .= '&limit=' . $this->request->get['limit'];
+			}
+			
+			$data['sorts'] = array();
+			
+			$data['sorts']['rating-DESC'] = array(
+				'text'  => "По рейтингу",
+				'value' => 'rating-DESC',
+				'direction' => 'desc',
+				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=rating&order=DESC' . $url)
+			);
+			$data['sorts']['p.price-DESC'] = array(
+				'text'  => "Дорогие",
+				'value' => 'p.price-DESC',
+				'direction' => 'desc',
+				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.price&order=DESC' . $url)
+			);
+			$data['sorts']['p.price-ASC'] = array(
+				'text'  => "Дешевые",
+				'value' => 'p.price-ASC',
+				'direction' => 'asc',
+				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.price&order=ASC' . $url)
+			);
+			
+			//$this->document->setTitle($category_info['meta_title']);
+			
+			$append_title = "Сортирока " . strtolower($data['sorts'][$sort . "-" . $order]['text']) . ", - страница 2, 3";
+			if($page > 1){
+				$append_title . ", - страница " . $page;
+			}
+			if($category_info['meta_title']) {
+				$this->document->setTitle($category_info['meta_title'] . " " . $append_title);
+			} else {
+				preg_match_all("/\{(.+?)\}/", $category_info['template_title'], $array_title);
+				$template_title = $category_info['template_title'];
+				foreach ($array_title[0] as $index => $value) {
+					$template_title = str_replace($value, $category_info[$array_title[1][$index]], $template_title);
+				}
+				$this->document->setTitle($template_title . " " . $append_title);
+			}
+			
+			//$this->document->setDescription($category_info['meta_description']);
+			if($category_info['meta_description']) {
+				$this->document->setDescription($category_info['meta_description']);
+			} else {
+				preg_match_all("/\{(.+?)\}/", $category_info['template_description'], $array_description);
+				$template_description = $category_info['template_description'];
+				foreach ($array_description[0] as $index => $value) {
+					$template_description = str_replace($value, $category_info[$array_description[1][$index]], $template_description);
+				}
+				$this->document->setDescription($template_description);
+			}
+			
+			$this->document->setKeywords($category_info['meta_keyword']);
+			
+			//$data['heading_title'] = $category_info['name'];
+			
+			if ($category_info['h1']) {
+				$data['heading_title'] = $category_info['h1'];
+			} else {
+				preg_match_all("/\{(.+?)\}/", $category_info['template_h1'], $array_h1);
+				$template_h1 = $category_info['template_h1'];
+				foreach ($array_h1[0] as $index => $value) {
+					$template_h1 = str_replace($value, $category_info[$array_h1[1][$index]], $template_h1);
+				}
+				$data['heading_title'] = $template_h1;
+			}
 
 			$data['text_refine'] = $this->language->get('text_refine');
 			$data['text_empty'] = $this->language->get('text_empty');
@@ -149,19 +219,29 @@ class ControllerProductCategory extends Controller {
 			}
 
 			$data['categories'] = array();
+			if($category_info['parent_id'] == 0){
 
-			$results = $this->model_catalog_category->getCategories($category_id);
+				$results = $this->model_catalog_category->getCategories($category_id);
 
-			foreach ($results as $result) {
-				$filter_data = array(
-					'filter_category_id'  => $result['category_id'],
-					'filter_sub_category' => true
-				);
-
-				$data['categories'][] = array(
-					'name' => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
-					'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
-				);
+				foreach ($results as $result) {
+					
+					if ($result['image']) {
+						$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+					} else {
+						$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+					}
+						
+					$filter_data = array(
+						'filter_category_id'  => $result['category_id'],
+						'filter_sub_category' => true
+					);
+	
+					$data['categories'][] = array(
+						'name' => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+						'image' => $image,
+						'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
+					);
+				}
 			}
 
 			$data['products'] = array();
@@ -212,6 +292,9 @@ class ControllerProductCategory extends Controller {
 
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
+					'basket_content'  => html_entity_decode($result['basket_content']),
+					'top_sale'    => $result['top_sale'],
+					'new'    => $result['new'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
@@ -220,21 +303,13 @@ class ControllerProductCategory extends Controller {
 					'tax'         => $tax,
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $result['rating'],
-					'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url)
+					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
 			}
 
-			$url = '';
+			
 
-			if (isset($this->request->get['filter'])) {
-				$url .= '&filter=' . $this->request->get['filter'];
-			}
-
-			if (isset($this->request->get['limit'])) {
-				$url .= '&limit=' . $this->request->get['limit'];
-			}
-
-			$data['sorts'] = array();
+		/*	$data['sorts'] = array();
 
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_default'),
@@ -290,7 +365,7 @@ class ControllerProductCategory extends Controller {
 				'text'  => $this->language->get('text_model_desc'),
 				'value' => 'p.model-DESC',
 				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.model&order=DESC' . $url)
-			);
+			);*/
 
 			$url = '';
 
@@ -360,10 +435,36 @@ class ControllerProductCategory extends Controller {
 			if ($limit && ceil($product_total / $limit) > $page) {
 			    $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page='. ($page + 1), 'SSL'), 'next');
 			}
+			
+			
+			
+			/*preg_match_all("/\{(.+?)\}/", $category_info['template_title'], $array_title);
+			$template_title = $category_info['template_title'];
+			foreach ($array_title[0] as $index => $value) {
+				$template_title = str_replace($value, $category_info[$array_title[1][$index]], $template_title);
+			}*/
+			
+			/*preg_match_all("/\{(.+?)\}/", $category_info['template_description'], $array_description);
+			$template_description = $category_info['template_description'];
+			foreach ($array_description[0] as $index => $value) {
+				$template_description = str_replace($value, $category_info[$array_description[1][$index]], $template_description);
+			}*/
+			
+			/*preg_match_all("/\{(.+?)\}/", $category_info['template_h1'], $array_h1);
+			$template_h1 = $category_info['template_h1'];
+			foreach ($array_h1[0] as $index => $value) {
+				$template_h1 = str_replace($value, $category_info[$array_h1[1][$index]], $template_h1);
+			}*/
 
 			$data['sort'] = $sort;
 			$data['order'] = $order;
 			$data['limit'] = $limit;
+			
+			if($page > 1){
+				$data['show_info'] = false;
+			}else{
+				$data['show_info'] = true;
+			}
 
 			$data['continue'] = $this->url->link('common/home');
 

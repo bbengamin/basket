@@ -1,4 +1,11 @@
 <?php
+
+if ($_SERVER["SERVER_PORT"] != 443) {
+    $redir = "Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+    header($redir);
+    exit();
+}
+
 // Version
 define('VERSION', '2.1.0.2');
 
@@ -13,8 +20,12 @@ if (!defined('DIR_APPLICATION')) {
 	exit;
 }
 
-// Startup
-require_once(DIR_SYSTEM . 'startup.php');
+// VirtualQMOD
+require_once('./vqmod/vqmod.php');
+VQMod::bootup();
+
+// VQMODDED Startup
+require_once(VQMod::modCheck(DIR_SYSTEM . 'startup.php'));
 
 // Registry
 $registry = new Registry();

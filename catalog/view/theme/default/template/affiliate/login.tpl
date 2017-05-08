@@ -1,9 +1,13 @@
 <?php echo $header; ?>
 <div class="container">
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
+  <ul class="breadcrumb"> 
+  <?php foreach ($breadcrumbs as $breadcrumb) { ?> 
+    <li itemscope itemtype="<?php echo $breadcrumb['href']; ?>" class="bread-crumb-item"> 
+    <a href="<?php echo $breadcrumb['href']; ?>" itemprop="url"> 
+    <span itemprop="title"><?php echo $breadcrumb['text']; ?></span> 
+    </a> 
+    </li> 
+  <?php } ?> 
   </ul>
   <?php if ($success) { ?>
   <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?></div>
@@ -20,18 +24,18 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <h1><?php echo $heading_title; ?></h1>
+      <h1 class='title-h1'><?php echo $heading_title; ?></h1>
       <?php echo $text_description; ?>
       <div class="row">
         <div class="col-sm-6">
           <div class="well">
-            <h2><?php echo $text_new_affiliate; ?></h2>
+            <h2 class='title-h2'><?php echo $text_new_affiliate; ?></h2>
             <p><?php echo $text_register_account; ?></p>
             <a class="btn btn-primary" href="<?php echo $register; ?>"><?php echo $button_continue; ?></a></div>
         </div>
         <div class="col-sm-6">
           <div class="well">
-            <h2><?php echo $text_returning_affiliate; ?></h2>
+            <h2 class='title-h2'><?php echo $text_returning_affiliate; ?></h2>
             <p><strong><?php echo $text_i_am_returning_affiliate; ?></strong></p>
             <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
               <div class="form-group">

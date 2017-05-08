@@ -35,6 +35,12 @@
             </div>
           </div>
           <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-author">Email</label>
+            <div class="col-sm-10">
+              <input type="text" name="email" value="<?php echo $email; ?>" id="input-author" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-product"><span data-toggle="tooltip" title="<?php echo $help_product; ?>"><?php echo $entry_product; ?></span></label>
             <div class="col-sm-10">
               <input type="text" name="product" value="<?php echo $product; ?>" placeholder="<?php echo $entry_product; ?>" id="input-product" class="form-control" />

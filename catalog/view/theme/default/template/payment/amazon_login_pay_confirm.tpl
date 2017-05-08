@@ -2,7 +2,7 @@
 <div class="container"><?php echo $content_top; ?>
 	<form class="payment-form" method="POST" action="<?php echo $process_order; ?>">
 		<div style="text-align:center;">
-			<h3><?php echo $heading_confirm; ?></h3>
+			<h3 class='title-h3'><?php echo $heading_confirm; ?></h3>
 			<?php if(isset($amazon_login_pay_test)){ ?>
 			<label>Debug Error Code     :</label>
 			<div id="errorCode_address"></div>

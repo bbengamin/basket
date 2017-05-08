@@ -383,6 +383,38 @@ class ControllerCatalogInformation extends Controller {
 			$data['information_store'] = array(0);
 		}
 
+		if (isset($this->request->post['h1'])) {
+			$data['h1'] = $this->request->post['h1'];
+		} elseif (!empty($information_info)) {
+			$data['h1'] = $information_info['h1'];
+		} else {
+			$data['h1'] = '';
+		}
+		
+		if (isset($this->request->post['template_title'])) {
+			$data['template_title'] = $this->request->post['template_title'];
+		} elseif (!empty($information_info)) {
+			$data['template_title'] = $information_info['template_title'];
+		} else {
+			$data['template_title'] = '';
+		}
+		
+		if (isset($this->request->post['template_description'])) {
+			$data['template_description'] = $this->request->post['template_description'];
+		} elseif (!empty($information_info)) {
+			$data['template_description'] = $information_info['template_description'];
+		} else {
+			$data['template_description'] = '';
+		}
+		
+		if (isset($this->request->post['template_h1'])) {
+			$data['template_h1'] = $this->request->post['template_h1'];
+		} elseif (!empty($information_info)) {
+			$data['template_h1'] = $information_info['template_h1'];
+		} else {
+			$data['template_h1'] = '';
+		}
+		
 		if (isset($this->request->post['keyword'])) {
 			$data['keyword'] = $this->request->post['keyword'];
 		} elseif (!empty($information_info)) {
@@ -448,9 +480,9 @@ class ControllerCatalogInformation extends Controller {
 				$this->error['description'][$language_id] = $this->language->get('error_description');
 			}
 
-			if ((utf8_strlen($value['meta_title']) < 3) || (utf8_strlen($value['meta_title']) > 255)) {
+			/*if ((utf8_strlen($value['meta_title']) < 3) || (utf8_strlen($value['meta_title']) > 255)) {
 				$this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
-			}
+			}*/
 		}
 
 		if (utf8_strlen($this->request->post['keyword']) > 0) {

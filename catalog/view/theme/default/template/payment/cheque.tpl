@@ -1,4 +1,4 @@
-<h2><?php echo $text_instruction; ?></h2>
+<h2 class='title-h2'><?php echo $text_instruction; ?></h2>
 <div class="well well-sm">
   <p><b><?php echo $text_payable; ?></b></p>
   <p><?php echo $payable; ?></p>

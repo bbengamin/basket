@@ -1,9 +1,13 @@
 <?php echo $header; ?>
 <div class="container">
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
+  <ul class="breadcrumb"> 
+  <?php foreach ($breadcrumbs as $breadcrumb) { ?> 
+    <li itemscope itemtype="<?php echo $breadcrumb['href']; ?>" class="bread-crumb-item"> 
+    <a href="<?php echo $breadcrumb['href']; ?>" itemprop="url"> 
+    <span itemprop="title"><?php echo $breadcrumb['text']; ?></span> 
+    </a> 
+    </li> 
+  <?php } ?> 
   </ul>
   <?php if ($error_warning) { ?>
   <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_warning; ?></div>
@@ -17,7 +21,7 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <h1><?php echo $heading_title; ?></h1>
+      <h1 class='title-h1'><?php echo $heading_title; ?></h1>
       <p><?php echo $text_email; ?></p>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
         <fieldset>

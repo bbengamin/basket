@@ -1,9 +1,13 @@
 <?php echo $header; ?>
 <div class="container">
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
+  <ul class="breadcrumb"> 
+  <?php foreach ($breadcrumbs as $breadcrumb) { ?> 
+    <li itemscope itemtype="<?php echo $breadcrumb['href']; ?>" class="bread-crumb-item"> 
+    <a href="<?php echo $breadcrumb['href']; ?>" itemprop="url"> 
+    <span itemprop="title"><?php echo $breadcrumb['text']; ?></span> 
+    </a> 
+    </li> 
+  <?php } ?> 
   </ul>
   <div class="row"><?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
@@ -14,8 +18,8 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <h1><?php echo $heading_title; ?></h1>
-      <h3><?php echo $text_location; ?></h3>
+      <h1 class='title-h1'><?php echo $heading_title; ?></h1>
+      <h3 class='title-h3'><?php echo $text_location; ?></h3>
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="row">
@@ -53,12 +57,12 @@
         </div>
       </div>
       <?php if ($locations) { ?>
-      <h3><?php echo $text_store; ?></h3>
+      <h3 class='title-h3'><?php echo $text_store; ?></h3>
       <div class="panel-group" id="accordion">
         <?php foreach ($locations as $location) { ?>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title"><a href="#collapse-location<?php echo $location['location_id']; ?>" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><?php echo $location['name']; ?> <i class="fa fa-caret-down"></i></a></h4>
+            <h4 class="panel-title title-h4"><a href="#collapse-location<?php echo $location['location_id']; ?>" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><?php echo $location['name']; ?> <i class="fa fa-caret-down"></i></a></h4>
           </div>
           <div class="panel-collapse collapse" id="collapse-location<?php echo $location['location_id']; ?>">
             <div class="panel-body">
@@ -100,6 +104,9 @@
         <?php } ?>
       </div>
       <?php } ?>
+      <div class="contact-map-box">
+        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Af62c7cb46cce202a07cbfe120cdf5727caede932143658671a65e7a3d30006f2&amp;width=100%25&amp;height=100%&amp;lang=ru_UA&amp;scroll=false"></script>
+      </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
         <fieldset>
           <legend><?php echo $text_contact; ?></legend>
@@ -141,4 +148,5 @@
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>
 </div>
+
 <?php echo $footer; ?>

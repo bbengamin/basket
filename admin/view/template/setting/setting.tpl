@@ -120,6 +120,12 @@
                     <?php } ?>
                   </div>
                 </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-copyright">Копирайт</label>
+                  <div class="col-sm-10">
+                    <textarea name="config_copyright" rows="5" id="input-config_copyright" class="form-control"><?php echo $config_copyright; ?></textarea>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-geocode"><span data-toggle="tooltip" data-container="#tab-general" title="<?php echo $help_geocode; ?>"><?php echo $entry_geocode; ?></span></label>
                   <div class="col-sm-10">

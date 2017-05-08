@@ -58,13 +58,21 @@
                       <?php } ?>
                     </div>
                   </div>
-                  <div class="form-group required">
+                  
+                  <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-h1">H1</label>
+                  <div class="col-sm-10">
+                    <textarea name="h1" id="inpu-h1" style="width: 100%;"><?php echo $h1; ?></textarea>
+                  </div>
+              </div>
+                  
+                  <div class="form-group">
                     <label class="col-sm-2 control-label" for="input-meta-title<?php echo $language['language_id']; ?>"><?php echo $entry_meta_title; ?></label>
                     <div class="col-sm-10">
                       <input type="text" name="information_description[<?php echo $language['language_id']; ?>][meta_title]" value="<?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['meta_title'] : ''; ?>" placeholder="<?php echo $entry_meta_title; ?>" id="input-meta-title<?php echo $language['language_id']; ?>" class="form-control" />
-                      <?php if (isset($error_meta_title[$language['language_id']])) { ?>
+                      <!-- <?php if (isset($error_meta_title[$language['language_id']])) { ?>
                       <div class="text-danger"><?php echo $error_meta_title[$language['language_id']]; ?></div>
-                      <?php } ?>
+                      <?php } ?> -->
                     </div>
                   </div>
                   <div class="form-group">
@@ -115,6 +123,28 @@
                   </div>
                 </div>
               </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-template-title">Шаблон Title</label>
+                  <div class="col-sm-10">
+                    <textarea name="template_title" id="input-template-title" style="width: 100%;"><?php echo $template_title; ?></textarea>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-template-description">Шаблон Description</label>
+                  <div class="col-sm-10">
+                    <textarea name="template_description" id="input-template-description" style="width: 100%;"><?php echo $template_description; ?></textarea>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-template-h1">Шаблон H1</label>
+                  <div class="col-sm-10">
+                    <textarea name="template_h1" id="input-template-h1" style="width: 100%;"><?php echo $template_h1; ?></textarea>
+                  </div>
+              </div>
+              
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-keyword"><span data-toggle="tooltip" title="<?php echo $help_keyword; ?>"><?php echo $entry_keyword; ?></span></label>
                 <div class="col-sm-10">

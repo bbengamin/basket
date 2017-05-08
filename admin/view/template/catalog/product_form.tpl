@@ -53,7 +53,7 @@
                     <div class="col-sm-10">
                       <input type="text" name="product_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['name'] : ''; ?>" placeholder="<?php echo $entry_name; ?>" id="input-name<?php echo $language['language_id']; ?>" class="form-control" />
                       <?php if (isset($error_name[$language['language_id']])) { ?>
-                      <div class="text-danger"><?php echo $error_name[$language['language_id']]; ?></div>
+                        <div class="text-danger"><?php echo $error_name[$language['language_id']]; ?></div>
                       <?php } ?>
                     </div>
                   </div>
@@ -63,13 +63,18 @@
                       <textarea name="product_description[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['description'] : ''; ?></textarea>
                     </div>
                   </div>
-                  <div class="form-group required">
+                  
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-h1">H1</label>
+                    <div class="col-sm-10">
+                      <textarea name="h1" id="input-h1" style="width: 100%;"><?php echo $h1; ?></textarea>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
                     <label class="col-sm-2 control-label" for="input-meta-title<?php echo $language['language_id']; ?>"><?php echo $entry_meta_title; ?></label>
                     <div class="col-sm-10">
                       <input type="text" name="product_description[<?php echo $language['language_id']; ?>][meta_title]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['meta_title'] : ''; ?>" placeholder="<?php echo $entry_meta_title; ?>" id="input-meta-title<?php echo $language['language_id']; ?>" class="form-control" />
-                      <?php if (isset($error_meta_title[$language['language_id']])) { ?>
-                      <div class="text-danger"><?php echo $error_meta_title[$language['language_id']]; ?></div>
-                      <?php } ?>
                     </div>
                   </div>
                   <div class="form-group">
@@ -111,6 +116,64 @@
                   <?php } ?>
                 </div>
               </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-basket-content">Состав корзины</label>
+                  <div class="col-sm-10">
+                    <textarea name="basket_content" id="input-basket-content"><?php echo $basket_content; ?></textarea>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-template-title">Шаблон Title</label>
+                  <div class="col-sm-10">
+                    <textarea name="template_title" id="input-template-title" style="width: 100%;"><?php echo $template_title; ?></textarea>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-template-description">Шаблон Description</label>
+                  <div class="col-sm-10">
+                    <textarea name="template_description" id="input-template-description" style="width: 100%;"><?php echo $template_description; ?></textarea>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-template-h1">Шаблон H1</label>
+                  <div class="col-sm-10">
+                    <textarea name="template_h1" id="input-template-h1" style="width: 100%;"><?php echo $template_h1; ?></textarea>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-top-sale">Топ-продаж</label>
+                <div class="col-sm-10">
+                  <select name="top_sale" id="input-top-sale" class="form-control">
+                    <?php if ($top_sale) { ?>
+                    <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                    <option value="0"><?php echo $text_disabled; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_enabled; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-new">Новинка</label>
+                <div class="col-sm-10">
+                  <select name="new" id="input-new" class="form-control">
+                    <?php if ($new) { ?>
+                    <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                    <option value="0"><?php echo $text_disabled; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_enabled; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-sku"><span data-toggle="tooltip" title="<?php echo $help_sku; ?>"><?php echo $entry_sku; ?></span></label>
                 <div class="col-sm-10">
@@ -918,7 +981,9 @@
 <?php foreach ($languages as $language) { ?>
 $('#input-description<?php echo $language['language_id']; ?>').summernote({height: 300});
 <?php } ?>
-//--></script>
+//-->
+$('#input-basket-content').summernote({height: 300});
+</script>
   <script type="text/javascript"><!--
 // Manufacturer
 $('input[name=\'manufacturer\']').autocomplete({

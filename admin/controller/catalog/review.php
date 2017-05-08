@@ -522,6 +522,14 @@ class ControllerCatalogReview extends Controller {
 		} else {
 			$data['author'] = '';
 		}
+		
+		if (isset($this->request->post['email'])) {
+			$data['email'] = $this->request->post['email'];
+		} elseif (!empty($review_info)) {
+			$data['email'] = $review_info['email'];
+		} else {
+			$data['email'] = '';
+		}
 
 		if (isset($this->request->post['text'])) {
 			$data['text'] = $this->request->post['text'];

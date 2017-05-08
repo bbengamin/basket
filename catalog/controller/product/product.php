@@ -214,8 +214,51 @@ class ControllerProductProduct extends Controller {
 				'href' => $this->url->link('product/product', $url . '&product_id=' . $this->request->get['product_id'])
 			);
 
-			$this->document->setTitle($product_info['meta_title']);
-			$this->document->setDescription($product_info['meta_description']);
+
+			if($product_info['meta_title']){
+				$this->document->setTitle($product_info['meta_title']);
+			}else{
+				preg_match_all("/\{(.+?)\}/", $product_info['template_title'], $array_title);
+				$template_title = $product_info['template_title'];
+				foreach ($array_title[0] as $index => $value) {
+					$template_title = str_replace($value, $product_info[$array_title[1][$index]], $template_title);
+				}
+				$this->document->setTitle($template_title);
+			}
+			
+			if($product_info['meta_description']){
+				$this->document->setTitle($product_info['meta_description']);
+			}else{
+				preg_match_all("/\{(.+?)\}/", $product_info['template_description'], $array_description);
+				$template_description = $product_info['template_description'];
+				foreach ($array_description[0] as $index => $value) {
+					$template_description = str_replace($value, $product_info[$array_description[1][$index]], $template_description);
+				}
+				$this->document->setTitle($template_description);
+			}
+			
+			if ($product_info['h1']) {
+				$data['heading_title'] = $product_info['h1'];
+			} else {
+				preg_match_all("/\{(.+?)\}/", $product_info['template_h1'], $array_h1);
+				$template_h1 = $product_info['template_h1'];
+				foreach ($array_h1[0] as $index => $value) {
+					$template_h1 = str_replace($value, $product_info[$array_h1[1][$index]], $template_h1);
+				}
+				$data['heading_title'] = $template_h1;
+			}
+			$data['image_title'] = $product_info['name'];
+			/*if($product_info['template_description']) {
+				preg_match_all("/\{(.+?)\}/", $product_info['template_description'], $array_title);
+				$template_description = $product_info['template_description'];
+				foreach ($array_title[0] as $index => $value) {
+					$template_description = str_replace($value, $product_info[$array_title[1][$index]], $template_description);
+				}
+				$this->document->setDescription($template_description);
+			} else {
+				$this->document->setDescription($product_info['meta_description']);
+			}*/
+			
 			$this->document->setKeywords($product_info['meta_keyword']);
 			$this->document->addLink($this->url->link('product/product', 'product_id=' . $this->request->get['product_id']), 'canonical');
 			$this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
@@ -224,7 +267,7 @@ class ControllerProductProduct extends Controller {
 			$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js');
 			$this->document->addStyle('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css');
 
-			$data['heading_title'] = $product_info['name'];
+			
 
 			$data['text_select'] = $this->language->get('text_select');
 			$data['text_manufacturer'] = $this->language->get('text_manufacturer');
@@ -267,6 +310,30 @@ class ControllerProductProduct extends Controller {
 			$data['manufacturer'] = $product_info['manufacturer'];
 			$data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id']);
 			$data['model'] = $product_info['model'];
+			$data['basket_content'] = html_entity_decode($product_info['basket_content']);
+			$data['top_sale'] = $product_info['top_sale'];
+			$data['new'] = $product_info['new'];
+			
+			//$data['template_title'] = $product_info['template_title'];
+			
+			/*preg_match_all("/\{(.+?)\}/", $product_info['template_title'], $array_title);
+			$template_title = $product_info['template_title'];
+			foreach ($array_title[0] as $index => $value) {
+				$template_title = str_replace($value, $product_info[$array_title[1][$index]], $template_title);
+			}*/
+			
+			/*preg_match_all("/\{(.+?)\}/", $product_info['template_description'], $array_description);
+			$template_description = $product_info['template_description'];
+			foreach ($array_description[0] as $index => $value) {
+				$template_description = str_replace($value, $product_info[$array_description[1][$index]], $template_description);
+			}*/
+			
+			/*preg_match_all("/\{(.+?)\}/", $product_info['template_h1'], $array_h1);
+			$template_h1 = $product_info['template_h1'];
+			foreach ($array_h1[0] as $index => $value) {
+				$template_h1 = str_replace($value, $product_info[$array_h1[1][$index]], $template_h1);
+			}*/
+			
 			$data['reward'] = $product_info['reward'];
 			$data['points'] = $product_info['points'];
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
@@ -435,10 +502,13 @@ class ControllerProductProduct extends Controller {
 					$rating = false;
 				}
 
+
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
+					'top_sale'        => $result['top_sale'],
+					'new'        => $result['new'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
 					'price'       => $price,
 					'special'     => $special,
@@ -465,7 +535,8 @@ class ControllerProductProduct extends Controller {
 			$data['recurrings'] = $this->model_catalog_product->getProfiles($this->request->get['product_id']);
 
 			$this->model_catalog_product->updateViewed($this->request->get['product_id']);
-
+			
+			$data['review'] = $this->load->controller('product/product/review');
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');
 			$data['content_top'] = $this->load->controller('common/content_top');
@@ -546,6 +617,7 @@ class ControllerProductProduct extends Controller {
 
 			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
 
+			$data['review'] = $this->load->controller('product/product/review');
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');
 			$data['content_top'] = $this->load->controller('common/content_top');
@@ -573,7 +645,25 @@ class ControllerProductProduct extends Controller {
 		} else {
 			$page = 1;
 		}
+		
+		if (isset($this->request->get['product_id'])) {
+			$product_id = (int)$this->request->get['product_id'];
+		} else {
+			$product_id = 0;
+		}
 
+		$this->load->model('catalog/product');
+
+		$product_info = $this->model_catalog_product->getProduct($product_id);
+
+		$data['product_name'] = $product_info['name'];
+		
+		
+			if ($product_info['image']) {
+			$data['image'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+		}
+		
+		
 		$data['reviews'] = array();
 
 		$review_total = $this->model_catalog_review->getTotalReviewsByProductId($this->request->get['product_id']);
@@ -583,6 +673,7 @@ class ControllerProductProduct extends Controller {
 		foreach ($results as $result) {
 			$data['reviews'][] = array(
 				'author'     => $result['author'],
+				'email'     => $result['email'],
 				'text'       => nl2br($result['text']),
 				'rating'     => (int)$result['rating'],
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
@@ -600,9 +691,9 @@ class ControllerProductProduct extends Controller {
 		$data['results'] = sprintf($this->language->get('text_pagination'), ($review_total) ? (($page - 1) * 5) + 1 : 0, ((($page - 1) * 5) > ($review_total - 5)) ? $review_total : ((($page - 1) * 5) + 5), $review_total, ceil($review_total / 5));
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/review.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/product/review.tpl', $data));
+			return $this->load->view($this->config->get('config_template') . '/template/product/review.tpl', $data);
 		} else {
-			$this->response->setOutput($this->load->view('default/template/product/review.tpl', $data));
+			return $this->load->view('default/template/product/review.tpl', $data);
 		}
 	}
 

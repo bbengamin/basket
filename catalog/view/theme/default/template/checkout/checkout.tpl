@@ -1,9 +1,13 @@
 <?php echo $header; ?>
 <div class="container">
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
+  <ul class="breadcrumb"> 
+  <?php foreach ($breadcrumbs as $breadcrumb) { ?> 
+    <li itemscope itemtype="<?php echo $breadcrumb['href']; ?>" class="bread-crumb-item"> 
+    <a href="<?php echo $breadcrumb['href']; ?>" itemprop="url"> 
+    <span itemprop="title"><?php echo $breadcrumb['text']; ?></span> 
+    </a> 
+    </li> 
+  <?php } ?> 
   </ul>
   <?php if ($error_warning) { ?>
   <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_warning; ?>
@@ -19,11 +23,11 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <h1><?php echo $heading_title; ?></h1>
+      <h1 class='title-h1'><?php echo $heading_title; ?></h1>
       <div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title"><?php echo $text_checkout_option; ?></h4>
+            <h4 class="panel-title title-h2"><?php echo $text_checkout_option; ?></h4>
           </div>
           <div class="panel-collapse collapse" id="collapse-checkout-option">
             <div class="panel-body"></div>
@@ -32,7 +36,7 @@
         <?php if (!$logged && $account != 'guest') { ?>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title"><?php echo $text_checkout_account; ?></h4>
+            <h4 class="panel-title title-h4"><?php echo $text_checkout_account; ?></h4>
           </div>
           <div class="panel-collapse collapse" id="collapse-payment-address">
             <div class="panel-body"></div>
@@ -41,7 +45,7 @@
         <?php } else { ?>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title"><?php echo $text_checkout_payment_address; ?></h4>
+            <h4 class="panel-title title-h4"><?php echo $text_checkout_payment_address; ?></h4>
           </div>
           <div class="panel-collapse collapse" id="collapse-payment-address">
             <div class="panel-body"></div>
@@ -51,7 +55,7 @@
         <?php if ($shipping_required) { ?>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title"><?php echo $text_checkout_shipping_address; ?></h4>
+            <h4 class="panel-title title-h4"><?php echo $text_checkout_shipping_address; ?></h4>
           </div>
           <div class="panel-collapse collapse" id="collapse-shipping-address">
             <div class="panel-body"></div>
@@ -59,7 +63,7 @@
         </div>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title"><?php echo $text_checkout_shipping_method; ?></h4>
+            <h4 class="panel-title title-h4"><?php echo $text_checkout_shipping_method; ?></h4>
           </div>
           <div class="panel-collapse collapse" id="collapse-shipping-method">
             <div class="panel-body"></div>
@@ -68,7 +72,7 @@
         <?php } ?>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title"><?php echo $text_checkout_payment_method; ?></h4>
+            <h4 class="panel-title title-h4"><?php echo $text_checkout_payment_method; ?></h4>
           </div>
           <div class="panel-collapse collapse" id="collapse-payment-method">
             <div class="panel-body"></div>
@@ -76,7 +80,7 @@
         </div>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title"><?php echo $text_checkout_confirm; ?></h4>
+            <h4 class="panel-title title-h4"><?php echo $text_checkout_confirm; ?></h4>
           </div>
           <div class="panel-collapse collapse" id="collapse-checkout-confirm">
             <div class="panel-body"></div>

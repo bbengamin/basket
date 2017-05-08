@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h4 class="panel-title"><a href="#collapse-shipping" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><?php echo $heading_title; ?> <i class="fa fa-caret-down"></i></a></h4>
+    <h4 class="panel-title title-h4"><a href="#collapse-shipping" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><?php echo $heading_title; ?> <i class="fa fa-caret-down"></i></a></h4>
   </div>
   <div id="collapse-shipping" class="panel-collapse collapse">
     <div class="panel-body">
@@ -79,7 +79,7 @@ $('#button-quote').on('click', function() {
 				html += '  <div class="modal-dialog">';
 				html += '    <div class="modal-content">';
 				html += '      <div class="modal-header">';
-				html += '        <h4 class="modal-title"><?php echo $text_shipping_method; ?></h4>';
+				html += '        <h4 class="modal-title title-h4"><?php echo $text_shipping_method; ?></h4>';
 				html += '      </div>';
 				html += '      <div class="modal-body">';
 

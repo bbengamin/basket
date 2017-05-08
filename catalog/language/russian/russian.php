@@ -10,7 +10,7 @@ $_['decimal_point']         = '.';
 $_['thousand_point']        = '';
 
 // Text
-$_['text_home']             = '<i class="fa fa-home"></i>';
+$_['text_home']             = 'Главная';
 $_['text_yes']              = 'Да';
 $_['text_no']               = 'Нет';
 $_['text_none']             = ' --- Не выбрано --- ';
@@ -23,7 +23,7 @@ $_['text_loading']          = 'Загрузка...';
 $_['button_address_add']    = 'Добавить адрес';
 $_['button_back']           = 'Назад';
 $_['button_continue']       = 'Продолжить';
-$_['button_cart']           = 'Купить';
+$_['button_cart']           = 'Добавить в корзину';
 $_['button_cancel']         = 'Отмена';
 $_['button_compare']        = 'В сравнение';
 $_['button_wishlist']       = 'В закладки';

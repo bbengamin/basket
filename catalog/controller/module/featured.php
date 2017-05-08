@@ -2,8 +2,7 @@
 class ControllerModuleFeatured extends Controller {
 	public function index($setting) {
 		$this->load->language('module/featured');
-
-		$data['heading_title'] = $this->language->get('heading_title');
+		$data['heading_title'] = $setting['name'];
 
 		$data['text_tax'] = $this->language->get('text_tax');
 
@@ -62,6 +61,8 @@ class ControllerModuleFeatured extends Controller {
 						'product_id'  => $product_info['product_id'],
 						'thumb'       => $image,
 						'name'        => $product_info['name'],
+						'top_sale'    => $product_info['top_sale'],
+						'new'         => $product_info['new'],
 						'description' => utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
 						'price'       => $price,
 						'special'     => $special,

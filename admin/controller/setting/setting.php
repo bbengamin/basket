@@ -519,6 +519,12 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$data['config_image'] = $this->config->get('config_image');
 		}
+		
+		if (isset($this->request->post['config_copyright'])) {
+			$data['config_copyright'] = $this->request->post['config_copyright'];
+		} else {
+			$data['config_copyright'] = $this->config->get('config_copyright');
+		}
 
 		$this->load->model('tool/image');
 

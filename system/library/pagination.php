@@ -7,8 +7,8 @@ class Pagination {
 	public $url = '';
 	public $text_first = '|&lt;';
 	public $text_last = '&gt;|';
-	public $text_next = '&gt;';
-	public $text_prev = '&lt;';
+	public $text_next = '<i class="material-icons">play_arrow</i>';
+	public $text_prev = '<i class="material-icons" id="rotate-navi">play_arrow</i>';
 
 	public function render() {
 		$total = $this->total;
@@ -33,8 +33,8 @@ class Pagination {
 		$output = '<ul class="pagination">';
 
 		if ($page > 1) {
-			$output .= '<li><a href="' . str_replace('{page}', 1, $this->url) . '">' . $this->text_first . '</a></li>';
-			$output .= '<li><a href="' . str_replace('{page}', $page - 1, $this->url) . '">' . $this->text_prev . '</a></li>';
+		//	$output .= '<li><a href="' . str_replace('{page}', 1, $this->url) . '">' . $this->text_first . '</a></li>';
+			$output .= '<li class="not-bg-item"><a href="' . str_replace('{page}', $page - 1, $this->url) . '">' . $this->text_prev . '</a></li>';
 		}
 
 		if ($num_pages > 1) {
@@ -66,8 +66,8 @@ class Pagination {
 		}
 
 		if ($page < $num_pages) {
-			$output .= '<li><a href="' . str_replace('{page}', $page + 1, $this->url) . '">' . $this->text_next . '</a></li>';
-			$output .= '<li><a href="' . str_replace('{page}', $num_pages, $this->url) . '">' . $this->text_last . '</a></li>';
+			$output .= '<li class="not-bg-item"><a href="' . str_replace('{page}', $page + 1, $this->url) . '">' . $this->text_next . '</a></li>';
+			//$output .= '<li><a href="' . str_replace('{page}', $num_pages, $this->url) . '">' . $this->text_last . '</a></li>';
 		}
 
 		$output .= '</ul>';

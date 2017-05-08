@@ -3,8 +3,38 @@ class ControllerCommonHeader extends Controller {
 	public function index() {
 		// Analytics
 		$this->load->model('extension/extension');
+		
+		if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
+		}
+		
+		if($page >= 2 && $this->request->get['route'] == 'product/category'){
+			$data['absolute_main'] = $this->url->link('product/category', 'path=' . $this->request->get['path']);
+		}else{
+			$data['absolute_main'] = false;
+		}
+		
+		if ($page > 1) {
+			$data['prev'] = $this->url->link('product/category', 'path=' . $this->request->get['path'] . "&page=" . $page-1);
+			$data['next'] = $this->url->link('product/category', 'path=' . $this->request->get['path'] . "&page=" . $page+1);
+		}else{
+			$data['prev'] = false;
+			$data['next'] = false;
+		}
+		
+		if($page > 1){
+			$data['show_info'] = false;
+		}else{
+			$data['show_info'] = true;
+		}
 
 		$data['analytics'] = array();
+		
+		
+		$this->document->addStyle('catalog/view/javascript/jquery/owl-carousel/owl.carousel.css');
+		$this->document->addScript('catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js');
 
 		$analytics = $this->model_extension_extension->getExtensions('analytics');
 
@@ -84,6 +114,8 @@ class ControllerCommonHeader extends Controller {
 		$data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 		$data['contact'] = $this->url->link('information/contact');
 		$data['telephone'] = $this->config->get('config_telephone');
+		$data['address'] = $this->config->get('config_address');
+		$data['officeHours'] = html_entity_decode($this->config->get('config_open'));
 
 		$status = true;
 
@@ -109,24 +141,22 @@ class ControllerCommonHeader extends Controller {
 		$categories = $this->model_catalog_category->getCategories(0);
 
 		foreach ($categories as $category) {
-			if ($category['top']) {
-				// Level 2
-				$children_data = array();
+	
+			// Level 2
+			$children_data = array();
 
-				$children = $this->model_catalog_category->getCategories($category['category_id']);
+			$children = $this->model_catalog_category->getCategories($category['category_id']);
 
-				foreach ($children as $child) {
-					$filter_data = array(
-						'filter_category_id'  => $child['category_id'],
-						'filter_sub_category' => true
-					);
-
-					$children_data[] = array(
-						'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
-						'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
+			foreach ($children as $child) {
+				if ($child['top']) {
+					$data['categories'][] = array(
+						'name'     => $child['name'],
+						'children' => $children_data,
+						'href'     => $this->url->link('product/category', 'path=' . $category['category_id'] . "_" . $child['category_id'])
 					);
 				}
-
+			}
+			if ($category['top']) {
 				// Level 1
 				$data['categories'][] = array(
 					'name'     => $category['name'],

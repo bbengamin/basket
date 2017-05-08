@@ -29,7 +29,7 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <h1><?php echo $heading_title; ?></h1>
+      <h class='title-h1'1><?php echo $heading_title; ?></h1>
       <?php if ($coupon || $voucher || $reward) { ?>
       <div class="panel-group" id="accordion"><?php echo $coupon; ?><?php echo $voucher; ?><?php echo $reward; ?></div>
       <?php } ?>

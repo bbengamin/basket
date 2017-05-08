@@ -21,8 +21,32 @@ class ControllerInformationInformation extends Controller {
 		$information_info = $this->model_catalog_information->getInformation($information_id);
 
 		if ($information_info) {
-			$this->document->setTitle($information_info['meta_title']);
-			$this->document->setDescription($information_info['meta_description']);
+			
+			//$this->document->setTitle($information_info['meta_title']);
+			if($information_info['meta_title']){
+				$this->document->setTitle($information_info['meta_title']);
+			}else{
+				preg_match_all("/\{(.+?)\}/", $information_info['template_title'], $array_title);
+				$template_title = $information_info['template_title'];
+				foreach ($array_title[0] as $index => $value) {
+					$template_title = str_replace($value, $product_info[$array_title[1][$index]], $template_title);
+				}
+				$this->document->setTitle($template_title);
+			}
+			
+			
+			//$this->document->setDescription($information_info['meta_description']);
+			if($information_info['meta_description']){
+				$this->document->setTitle($information_info['meta_description']);
+			}else{
+				preg_match_all("/\{(.+?)\}/", $information_info['template_description'], $array_description);
+				$template_description = $information_info['template_description'];
+				foreach ($array_description[0] as $index => $value) {
+					$template_description = str_replace($value, $product_info[$array_description[1][$index]], $template_description);
+				}
+				$this->document->setTitle($template_description);
+			}
+			
 			$this->document->setKeywords($information_info['meta_keyword']);
 
 			$data['breadcrumbs'][] = array(
@@ -30,7 +54,17 @@ class ControllerInformationInformation extends Controller {
 				'href' => $this->url->link('information/information', 'information_id=' .  $information_id)
 			);
 
-			$data['heading_title'] = $information_info['title'];
+			//$data['heading_title'] = $information_info['title'];
+			if ($information_info['h1']) {
+				$data['heading_title'] = $information_info['h1'];
+			} else {
+				preg_match_all("/\{(.+?)\}/", $information_info['template_h1'], $array_h1);
+				$template_h1 = $information_info['template_h1'];
+				foreach ($array_h1[0] as $index => $value) {
+					$template_h1 = str_replace($value, $product_info[$array_h1[1][$index]], $template_h1);
+				}
+				$data['heading_title'] = $template_h1;
+			}
 
 			$data['button_continue'] = $this->language->get('button_continue');
 
@@ -44,6 +78,24 @@ class ControllerInformationInformation extends Controller {
 			$data['content_bottom'] = $this->load->controller('common/content_bottom');
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
+			
+			/*preg_match_all("/\{(.+?)\}/", $information_info['template_title'], $array_title);
+			$template_title = $information_info['template_title'];
+			foreach ($array_title[0] as $index => $value) {
+				$template_title = str_replace($value, $information_info[$array_title[1][$index]], $template_title);
+			}
+			
+			preg_match_all("/\{(.+?)\}/", $information_info['template_description'], $array_description);
+			$template_description = $information_info['template_description'];
+			foreach ($array_description[0] as $index => $value) {
+				$template_description = str_replace($value, $information_info[$array_description[1][$index]], $template_description);
+			}
+			
+			preg_match_all("/\{(.+?)\}/", $information_info['template_h1'], $array_h1);
+			$template_h1 = $information_info['template_h1'];
+			foreach ($array_h1[0] as $index => $value) {
+				$template_h1 = str_replace($value, $information_info[$array_h1[1][$index]], $template_h1);
+			}*/
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/information/information.tpl')) {
 				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/information/information.tpl', $data));

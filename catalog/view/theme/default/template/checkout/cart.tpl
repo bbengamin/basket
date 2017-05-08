@@ -1,9 +1,13 @@
 <?php echo $header; ?>
 <div class="container">
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
+  <ul class="breadcrumb"> 
+  <?php foreach ($breadcrumbs as $breadcrumb) { ?> 
+    <li itemscope itemtype="<?php echo $breadcrumb['href']; ?>" class="bread-crumb-item"> 
+    <a href="<?php echo $breadcrumb['href']; ?>" itemprop="url"> 
+    <span itemprop="title"><?php echo $breadcrumb['text']; ?></span> 
+    </a> 
+    </li> 
+  <?php } ?> 
   </ul>
   <?php if ($attention) { ?>
   <div class="alert alert-info"><i class="fa fa-info-circle"></i> <?php echo $attention; ?>
@@ -29,7 +33,7 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <h1><?php echo $heading_title; ?>
+      <h1 class='title-h1'><?php echo $heading_title; ?>
         <?php if ($weight) { ?>
         &nbsp;(<?php echo $weight; ?>)
         <?php } ?>
@@ -98,7 +102,7 @@
         </div>
       </form>
       <?php if ($coupon || $voucher || $reward || $shipping) { ?>
-      <h2><?php echo $text_next; ?></h2>
+      <h2 class='title-h2'><?php echo $text_next; ?></h2>
       <p><?php echo $text_next_choice; ?></p>
       <div class="panel-group" id="accordion"><?php echo $coupon; ?><?php echo $voucher; ?><?php echo $reward; ?><?php echo $shipping; ?></div>
       <?php } ?>

@@ -17,6 +17,13 @@ class ModelCatalogProduct extends Model {
 				'meta_keyword'     => $query->row['meta_keyword'],
 				'tag'              => $query->row['tag'],
 				'model'            => $query->row['model'],
+				'basket_content'            => $query->row['basket_content'],
+				'template_title'            => $query->row['template_title'],
+				'template_description'      => $query->row['template_description'],
+				'template_h1'               => $query->row['template_h1'],
+				'h1'                        => $query->row['h1'],
+				'top_sale'                  => $query->row['top_sale'],
+				'new'                       => $query->row['new'],
 				'sku'              => $query->row['sku'],
 				'upc'              => $query->row['upc'],
 				'ean'              => $query->row['ean'],
@@ -157,14 +164,14 @@ class ModelCatalogProduct extends Model {
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			if ($data['sort'] == 'pd.name' || $data['sort'] == 'p.model') {
-				$sql .= " ORDER BY LCASE(" . $data['sort'] . ")";
+				$sql .= " ORDER BY p.stock_status_id DESC, LCASE(" . $data['sort'] . ")";
 			} elseif ($data['sort'] == 'p.price') {
-				$sql .= " ORDER BY (CASE WHEN special IS NOT NULL THEN special WHEN discount IS NOT NULL THEN discount ELSE p.price END)";
+				$sql .= " ORDER BY p.stock_status_id DESC, (CASE WHEN special IS NOT NULL THEN special WHEN discount IS NOT NULL THEN discount ELSE p.price END)";
 			} else {
-				$sql .= " ORDER BY " . $data['sort'];
+				$sql .= " ORDER BY p.stock_status_id DESC, " . $data['sort'];
 			}
 		} else {
-			$sql .= " ORDER BY p.sort_order";
+			$sql .= " ORDER BY p.stock_status_id DESC, p.sort_order";
 		}
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {

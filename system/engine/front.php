@@ -14,7 +14,6 @@ final class Front {
 
 	public function dispatch($action, $error) {
 		$this->error = $error;
-
 		foreach ($this->pre_action as $pre_action) {
 			$result = $this->execute($pre_action);
 

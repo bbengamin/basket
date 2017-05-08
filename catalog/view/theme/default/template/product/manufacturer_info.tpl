@@ -14,7 +14,7 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <h2><?php echo $heading_title; ?></h2>
+      <h2 class='title-h2'><?php echo $heading_title; ?></h2>
       <?php if ($products) { ?>
       <p><a href="<?php echo $compare; ?>" id="compare-total"> <?php echo $text_compare; ?></a></p>
       <div class="row">
@@ -60,7 +60,7 @@
           <div class="product-thumb">
             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
             <div class="caption">
-              <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
+              <h4 class='title-h4'><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
               <p><?php echo $product['description']; ?></p>
               <?php if ($product['rating']) { ?>
               <div class="rating">

@@ -44,6 +44,12 @@ class ControllerCommonFooter extends Controller {
 		$data['order'] = $this->url->link('account/order', '', 'SSL');
 		$data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
 		$data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');
+		$data['comment'] = $this->config->get('config_comment');
+		$data['telephone'] = $this->config->get('config_telephone');
+		$data['email'] = $this->config->get('config_email');
+		$data['address'] = $this->config->get('config_address');
+		$data['officeHours'] = html_entity_decode($this->config->get('config_open'));
+		$data['config_copyright'] = $this->config->get('config_copyright');
 
 		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 
