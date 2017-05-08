@@ -26,6 +26,40 @@ function getURLVar(key) {
 
 
 $(document).ready(function() {
+	$(document).on('click','.transparent-overley', function(e) {
+	    $(this).parent().empty();
+	})
+	var delayTimer;
+	$('#search input[name=\'search\']').on('keyup', function(e) {
+	    clearTimeout(delayTimer);
+	    delayTimer = setTimeout(function() {
+			var value = $('header input[name=\'search\']').val();
+			var data = 'search=' + encodeURIComponent(value);
+			
+			$.ajax({
+				url: 'index.php?route=product/search/liveSearch',
+				type: 'get',
+				data: data,
+				dataType: 'html',
+				success: function(html) {
+					$('#live-search-result').html(html);
+				}
+			});
+	    }, 500);
+	});
+	
+	$('#buy-form').on('change', '.quantity-input',function() {
+	    $.ajax({
+	        url: 'index.php?route=checkout/buy/editMy',
+	        type: 'post',
+	        data: $(this),
+	        dataType: 'json',
+	        success: function(json) {
+	            $('#buy-form').load('index.php?route=checkout/buy #buy-load');
+	        }
+	    });
+	});
+	
 	$(document).on('click', '.minus', function () {
         var $input = $(this).parent().find('.quantity-input');
         var count = parseInt($input.val()) - 1;

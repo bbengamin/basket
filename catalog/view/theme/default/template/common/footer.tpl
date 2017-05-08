@@ -158,4 +158,18 @@
     </div>
   </div>
 </div>
+<div id="scrollup">
+  <i class="material-icons">keyboard_arrow_up</i>
+</div>
+<script>
+  $("#scrollup").mouseover(function () {
+        $(this).animate({opacity: 0.65}, 300)
+    }).mouseout(function () {
+        $(this).animate({opacity: 1}, 300)
+    }).click(function () {
+        return $("body,html").animate({scrollTop: 0}, 800), !1
+    }), $(window).scroll(function () {
+        $(document).scrollTop() > 300 ? jQuery("#scrollup").fadeIn("fast") : jQuery("#scrollup").fadeOut("fast")
+    });
+</script>
 </body></html>

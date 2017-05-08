@@ -4,3 +4,4 @@
     <i class="fa fa-search"></i>
   </span>
 </div>
+<div id='live-search-result'></div>

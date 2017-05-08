@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-sm-5">
         <div class='basket-box-container'>
-          <a href='#'>
+          <a href='/katalog/new_year'>
             <span><img src='/catalog/view/theme/default/image/slide-img1.jpg' alt='Купить Новогодние подарочные корзины'></span>
             <span class='basket-box-container__text'>Новогодние 
             подарочные корзины </span>
@@ -14,13 +14,13 @@
       <div class="col-sm-7">
         <div class='basket-box-row'>
           <div class='basket-box-container'>
-            <a href='#'>
+            <a href='/katalog/for_men'>
               <span><img src='/catalog/view/theme/default/image/slide-img2.jpg' alt='Купить овогодние подарочные корзины'></span>
               <span class='basket-box-container__text'>Корзины для мужчин</span>
             </a>
           </div>
           <div class='basket-box-container'>
-            <a href='#'>
+            <a href='/katalog/baskets_with_fruit'>
               <span><img src='/catalog/view/theme/default/image/slide-img3.jpg' alt='Купить Корзины с фруктами'></span>
               <span class='basket-box-container__text'>Корзины с фруктами</span>
             </a>
@@ -29,13 +29,13 @@
 
         <div class='basket-box-row'>
           <div class='basket-box-container'>
-            <a href='#'>
+            <a href='/katalog/for_women'>
               <span><img src='/catalog/view/theme/default/image/slide-img4.jpg' alt='Купить Корзины для женщин'></span>
               <span class='basket-box-container__text'>Корзины для женщин</span>
             </a>
           </div>
           <div class='basket-box-container'>
-            <a href='#'>
+            <a href='/katalog/empty_recycle_bins'>
               <span><img src='/catalog/view/theme/default/image/slide-img5.jpg' alt='Купить Пустыне корзины'></span>
               <span class='basket-box-container__text'>Пустыне корзины</span>
             </a>

@@ -1615,3 +1615,38 @@
 2017-05-08 11:01:40 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/ubuntu/workspace/system/library/session.php on line 21
 2017-05-08 11:13:16 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/ubuntu/workspace/system/library/session.php on line 21
 2017-05-08 11:25:36 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/ubuntu/workspace/system/library/session.php on line 21
+2017-05-08 12:01:02 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:02 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:02 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:02 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:02 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:04 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:04 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:04 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:04 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:04 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:12 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:12 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:12 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:12 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:12 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:39 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:39 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:39 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:39 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:39 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:42 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:42 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:42 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:42 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 12:01:42 - PHP Notice:  Undefined index: key in /home/ubuntu/workspace/catalog/controller/checkout/buy.php on line 187
+2017-05-08 13:02:30 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/ubuntu/workspace/system/library/session.php on line 21
+2017-05-08 13:02:51 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/ubuntu/workspace/system/library/session.php on line 21
+2017-05-08 13:06:11 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/ubuntu/workspace/system/library/session.php on line 21
+2017-05-08 13:10:52 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/ubuntu/workspace/system/library/session.php on line 21
+2017-05-08 14:25:06 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/ubuntu/workspace/system/library/session.php on line 21
+2017-05-08 14:38:12 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/ubuntu/workspace/system/library/session.php on line 21
+2017-05-08 14:39:40 - PHP Notice:  Undefined index: path in /home/ubuntu/workspace/catalog/controller/common/header.php on line 20
+2017-05-08 14:39:40 - PHP Notice:  Undefined index: path in /home/ubuntu/workspace/catalog/controller/common/header.php on line 21
+2017-05-08 14:47:15 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/ubuntu/workspace/system/library/session.php on line 21
+2017-05-08 15:44:53 - PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13) in /home/ubuntu/workspace/system/library/session.php on line 21

@@ -307,9 +307,9 @@ header .row {
 	background: #008ad7;
 }
 .navbar-nav>li>a {
-	font-size: 16px;
-	color: #fff;
-	padding: 10px 15px;
+    font-size: 18px;
+    color: #fff;
+    padding: 10px 10px;
 }
 .nav>li>a:focus, .nav>li>a:hover {
     text-decoration: none;
@@ -1378,7 +1378,7 @@ option, textarea.form-control, textarea {
     border: 1px solid #cecec3;
     background-color: #f3f3ea;
     color: #9fa5b5;
-    font-family: "Myriad Pro";
+    /*font-family: "Myriad Pro";*/
     line-height: 20px;
     font-size: 16px;
 }
@@ -1804,10 +1804,173 @@ span.price-val:before {
     background-color: #ff4038;
     border-color: #ff4038;
 }
-
-
-
-
+#scrollup {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 5%;
+    right: 2%;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    display: none;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 50%;
+    color: #008ad7;
+    border: 1px solid #008ad7;
+    transition: all 0.3s;
+     display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    -webkit-box-align: center;
+    align-items: center;
+     -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+#scrollup .material-icons {
+    font-size: 48px
+}
+#scrollup:hover {
+    color: #fff;
+    background-color: #008ad7;
+    transition: all 0.3s;
+}
+.transparent-overley {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: rgba(0,0,0,.4);
+}
+body.header-scrolled {
+    padding-top: 110px;
+}
+td.cart-tble-item {
+    width: 20%;
+    text-align: center;
+}
+.cart-tble-item .quanty-box {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+   -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center; 
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.cart-tble-item .quanty-box > div {
+    margin: 0 5px;
+    cursor: pointer;
+}
+.cart-tble-item .quanty-box input {
+    width: 40px;
+    text-align: center;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    vertical-align: middle;
+}
+.cart-item-name {
+    font-size: 18px;
+    color: inherit;
+}
+.ajaxResult {
+    z-index: 11;
+    position: fixed;
+    width: 50%;
+    right: 105px;
+}
+.ajaxResult .row {
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-box-orient: vertical;
+    flex-direction: column;
+}
+.ajaxResult .product-thumb {
+     display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-bottom: 1px solid #000;
+}
+.ajaxResult .product-thumb:hover {
+    background: #eee;
+    transition: all 0.3s;
+    box-shadow: none;
+    
+} 
+.ajaxResult .image {
+    width: 20%;
+}
+.ajaxResult .caption {
+    width: 60%;
+    margin-left: 20px;
+    text-align: left;
+     -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+     -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-box-orient: vertical;
+    flex-direction: column;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    -webkit-box-align: start;
+    align-items: flex-start; 
+}
+.ajaxResult .caption h4 {
+    text-align: left;
+}
+.ajaxResult .caption h4 a {
+    display: block;
+    text-align: left;
+    width: 100%;
+}
+.live-srch-down-buttons {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    -webkit-box-align: center;
+    align-items: center;
+    background: #eee;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+.live-srch-down-buttons > div, .live-srch-down-buttons > div a {
+     display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
 /*===================================== media start ==========================================*/
 @media(max-width: 1200px) {
     .top-menus a {
@@ -1907,6 +2070,10 @@ span.price-val:before {
         -ms-flex-align: center;
         -webkit-box-align: center;
         align-items: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        -webkit-box-pack: center;
+        justify-content: center; 
         color: #fff;
     }
     .navbar-toggle {
@@ -2018,9 +2185,9 @@ span.price-val:before {
         margin-top: 0;
        width: 55%;
     }
-    .header-scrolled .styck-header-box {
+    /*.header-scrolled .styck-header-box {
         position: relative;
-    }
+    }*/
     .head-cart-icon-wrap {
             width: 20%;
     }
@@ -2034,6 +2201,49 @@ span.price-val:before {
     #cart {
         cursor: pointer;
         margin-bottom: 0;
+    }
+    #scrollup {
+        bottom: 10px;
+        right: 10px;
+        transform: translate(0,0);
+    }
+    body.header-scrolled {
+            padding-top: 245px;
+    }
+    .cart-item-mobile {
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        -webkit-box-pack: start;
+        justify-content: flex-start;
+        -ms-flex-align: start;
+        -webkit-box-align: start;
+        align-items: flex-start; 
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+    }
+    .cart-tble-item .quanty-box {
+         -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        -webkit-box-pack: start;
+        justify-content: flex-start;
+        margin: 5px 0;
+    }
+    .ajaxResult {
+        z-index: 11;
+        position: fixed;
+        width: 90%;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 300px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding-bottom: 50px;
+    }
+    .main-menu-wrap {
+        width: 100%;
     }
 }
 @media(max-width: 500px) {
